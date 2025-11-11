@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>प्रश्न सूची</title>
+<style>
+body{font-family:Arial;background:#fff;padding:20px;}
+.q{background:#eef3ff;padding:12px;margin-bottom:10px;border-radius:8px;}
+</style>
+</head>
+<body>
+<h1>Bihar Exam Questions (Hindi)</h1>
+<div id="list">Loading...</div>
+
+<script>
+fetch('questions.json')
+.then(r=>r.json())
+.then(data=>{
+  let html="";
+  data.forEach(q=>{
+    html+=`<div class="q"><b>Q${q.id}:</b> ${q.question}<br>
+    विकल्प: ${q.options.join(", ")}<br>
+    <b>उत्तर:</b> ${q.answer}</div>`;
+  });
+  document.getElementById('list').innerHTML=html;
+});
+</script>
+
+</body>
+</html>
